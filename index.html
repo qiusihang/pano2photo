@@ -1,0 +1,42 @@
+<head>
+    <title>Pano2Photo</title>
+</head>
+<body style="text-align:center;">
+	<h2>Pano2Photo</h2>
+	<p><a href="https://github.com/qiusihang/pano2photo">Project Page</a></p>
+	<p>Converting a 360-degree panorama image to an undistorted photo (or a cubemap).</p>
+	<hr>
+	<p>
+		<input type="button" onclick="loadExample()" value="Load Example"> or upload a panorama image:
+		<input type="file" accept="image/*" name="image" id="file" onchange="loadFile(event)">
+	</p>
+	<div style="text-align:center">
+		<div style="position:relative;margin:0 auto;width:600px;">
+			<img id="panoimg" width="600px" style="z-index:1;"/>
+			<canvas id="pano" style="position:absolute;top:0px;left:0px;z-index:2;"/>
+		</div>
+	</div>
+	<div id="tool" style="display:none;">
+		<center>
+			<br/>
+			<table border="0">
+				<tr><td>Heading:</td><td><input type="range" id="heading" min="0" max="359" oninput="drawlines()"></td><td id="hvalue"></td></tr>
+				<tr><td>Pitch:</td><td><input type="range" id="pitch" min="-90" max="90" step="1" oninput="drawlines()"></td><td id="pvalue"></td></tr>
+				<tr><td>FoV:</td><td><input type="range" id="fov" min="60" max="120" oninput="drawlines()"></td><td id="fvalue"></td></tr>
+				<tr><td>Size:</td><td>
+					<input type="number" id="size0" min="200" max="1000" value="600">
+					<span style="font-family:sans-serif;">x</span>
+					<input type="number" id="size1" min="200" max="1000" value="400">
+				</td><td></td>
+			</table>
+			<br/>
+			<input type="button" onclick="shot()" style="width:100px;font-size:16px;" value="SHOT">
+			<br/><br/>or create a
+			<input type="button" onclick="cubemap(400)" style="width:150px;font-size:16px;" value="CubeMap">/
+			<input type="button" onclick="cubemap()" style="width:150px;font-size:16px;" value="Full CubeMap">
+		</center>
+	</div>
+	<p><img id="photo" width="600px"/></p>
+    <script src="functions.js"></script>
+    <script src="convert.js"></script>
+</body>
